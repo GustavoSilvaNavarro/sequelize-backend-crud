@@ -3,14 +3,14 @@ import 'dotenv/config';
 
 import connectionToServer from './server/server.js';
 import { sequelize } from './db/connection-db.js';
-import './models/project-model.js';
-import './models/task-model.js';
+// import './models/project-model.js';
+// import './models/task-model.js';
 
 const { app } = connectionToServer;
 
 async function main() {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log('Connection has been established successfully');
 
     app.listen(app.get('port'), () => {
