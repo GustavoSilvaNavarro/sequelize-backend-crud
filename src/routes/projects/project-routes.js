@@ -6,6 +6,7 @@ import {
   updateInfo,
   deleteInfo,
   getSingleData,
+  getAllTasksFromProject,
 } from '../../controllers/project-controllers.js';
 
 const router = Router();
@@ -24,5 +25,8 @@ router.put('/projects/:idProject', updateInfo);
 
 //! Delete - data from a project
 router.delete('/projects/:idProject', deleteInfo);
+
+//! Get - Show all tasks that belong to a project
+router.get('/projects/:idProject/tasks', getAllTasksFromProject);
 
 export default router;

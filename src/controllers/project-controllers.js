@@ -1,4 +1,5 @@
 import { ProjectSchema } from '../models/project-model.js';
+import { TaskSchema } from '../models/task-model.js';
 
 //! GET - show info about projects
 export const getProjects = async (req, res, next) => {
@@ -70,6 +71,22 @@ export const deleteInfo = async (req, res, next) => {
       },
     });
     res.sendStatus(204);
+  } catch (err) {
+    console.log(err.message || err.toString());
+    next(err);
+  }
+};
+
+//! Get - Show all tasks that belong to a project
+export const getAllTasksFromProject = async (req, res, next) => {
+  try {
+    const tasks = await TaskSchema.findAll({
+      where: {
+        projectId: req.params.idProject,
+      },
+    });
+
+    res.status(200).json(tasks);
   } catch (err) {
     console.log(err.message || err.toString());
     next(err);
